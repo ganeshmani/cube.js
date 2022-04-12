@@ -125,7 +125,8 @@ export class CubeSymbols {
       }
 
       if (preAggregation.scheduledRefresh === undefined) {
-        preAggregation.scheduledRefresh = getEnv('scheduledRefreshDefault');
+        preAggregation.scheduledRefresh =
+          getEnv('scheduledRefreshDefault');
       }
 
       if (preAggregation.external === undefined) {
