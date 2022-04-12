@@ -129,7 +129,9 @@ export class CubeSymbols {
       }
 
       if (preAggregation.external === undefined) {
-        preAggregation.external = ['rollup', 'rollupJoin'].includes(preAggregation.type) && getEnv('externalDefault');
+        preAggregation.external =
+          ['rollup', 'rollupJoin'].includes(preAggregation.type) &&
+          getEnv('externalDefault');
       }
     }
   }
