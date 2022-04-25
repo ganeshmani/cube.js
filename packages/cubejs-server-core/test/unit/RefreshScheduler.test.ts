@@ -292,6 +292,8 @@ describe('Refresh Scheduler', () => {
   jest.setTimeout(60000);
 
   test('Round robin pre-aggregation refresh by history priority', async () => {
+    process.env.CUBEJS_EXTERNAL_DEFAULT = 'false';
+    process.env.CUBEJS_SCHEDULED_REFRESH_DEFAULT = 'false';
     const {
       refreshScheduler, mockDriver,
     } = setupScheduler({ repository: repositoryWithPreAggregations, useOriginalSqlPreAggregations: true });
@@ -365,6 +367,8 @@ describe('Refresh Scheduler', () => {
   });
 
   test('Manual build', async () => {
+    process.env.CUBEJS_EXTERNAL_DEFAULT = 'false';
+    process.env.CUBEJS_SCHEDULED_REFRESH_DEFAULT = 'false';
     const {
       refreshScheduler, mockDriver,
     } = setupScheduler({ repository: repositoryWithPreAggregations, useOriginalSqlPreAggregations: true });
@@ -406,6 +410,8 @@ describe('Refresh Scheduler', () => {
   });
 
   test('Cache only pre-aggregation partitions', async () => {
+    process.env.CUBEJS_EXTERNAL_DEFAULT = 'false';
+    process.env.CUBEJS_SCHEDULED_REFRESH_DEFAULT = 'false';
     const {
       refreshScheduler,
     } = setupScheduler({ repository: repositoryWithPreAggregations, useOriginalSqlPreAggregations: true });
@@ -585,6 +591,8 @@ describe('Refresh Scheduler', () => {
   });
 
   test('Iterator waits before advance', async () => {
+    process.env.CUBEJS_EXTERNAL_DEFAULT = 'false';
+    process.env.CUBEJS_SCHEDULED_REFRESH_DEFAULT = 'false';
     const {
       refreshScheduler, mockDriver,
     } = setupScheduler({ repository: repositoryWithPreAggregations });
