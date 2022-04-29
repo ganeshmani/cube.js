@@ -520,13 +520,35 @@ impl RewriteRules for FilterRules {
                 ),
             ),
             rewrite(
-                "unwrap-cast",
-                binary_expr(
-                    cast_expr(column_expr("?column"), "?data_type"),
-                    "?op",
-                    literal_expr("?literal"),
+                "unwrap-cast-column",
+                filter_replacer(
+                    binary_expr(
+                        cast_expr(column_expr("?column"), "?data_type"),
+                        "?op",
+                        literal_expr("?literal"),
+                    ),
+                    "?cube",
                 ),
-                binary_expr(column_expr("?column"), "?op", literal_expr("?literal")),
+                filter_replacer(
+                    binary_expr(column_expr("?column"), "?op", literal_expr("?literal")),
+                    "?cube",
+                ),
+            ),
+            // We want to defer cast evaluation to filter value parse as it differs from DF
+            rewrite(
+                "unwrap-cast-literal",
+                filter_replacer(
+                    binary_expr(
+                        column_expr("?column"),
+                        "?op",
+                        cast_expr(literal_expr("?literal"), "?data_type"),
+                    ),
+                    "?cube",
+                ),
+                filter_replacer(
+                    binary_expr(column_expr("?column"), "?op", literal_expr("?literal")),
+                    "?cube",
+                ),
             ),
         ]
     }
