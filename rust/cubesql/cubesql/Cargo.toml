@@ -9,7 +9,7 @@ documentation = "https://cube.dev/docs"
 homepage = "https://cube.dev"
 
 [dependencies]
-datafusion = { git = 'https://github.com/cube-js/arrow-datafusion.git', rev = "4337da9d948228ec21faae66c081a3f067136fbc", default-features = false, features = ["unicode_expressions"] }
+datafusion = { git = 'https://github.com/cube-js/arrow-datafusion.git', rev = "11e69c52cd4665c90cb1eb5bb6ca258bbd81c16b", default-features = false, features = ["unicode_expressions"] }
 anyhow = "1.0"
 thiserror = "1.0"
 cubeclient = { path = "../cubeclient" }
