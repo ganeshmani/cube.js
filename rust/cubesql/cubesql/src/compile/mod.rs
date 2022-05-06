@@ -5518,7 +5518,6 @@ mod tests {
             "++\n++\n++"
         );
 
-        // TODO: todos!
         insta::assert_snapshot!(
             "tableau_null_text_query",
             execute_query(
@@ -5532,7 +5531,7 @@ mod tests {
                     fkn.nspname AS FKTABLE_SCHEM,
                     fkc.relname AS FKTABLE_NAME,
                     fka.attname AS FKCOLUMN_NAME,
-                    /*!TODO pos.n AS KEY_SEQ, */
+                    pos.n AS KEY_SEQ,
                     CASE con.confupdtype
                         WHEN 'c' THEN 0
                         WHEN 'n' THEN 2
@@ -5571,11 +5570,11 @@ mod tests {
                 WHERE
                     pkn.oid = pkc.relnamespace AND
                     pkc.oid = pka.attrelid AND
-                    /*!TODO pka.attnum = con.confkey[pos.n] AND */
+                    pka.attnum = con.confkey[pos.n] AND
                     con.confrelid = pkc.oid AND
                     fkn.oid = fkc.relnamespace AND
                     fkc.oid = fka.attrelid AND
-                    /*!TODO fka.attnum = con.conkey[pos.n] AND */
+                    fka.attnum = con.conkey[pos.n] AND
                     con.conrelid = fkc.oid AND
                     con.contype = 'f' AND
                     (pkic.relkind = 'i' OR pkic.relkind = 'I') AND
@@ -5585,8 +5584,8 @@ mod tests {
                 ORDER BY
                     pkn.nspname,
                     pkc.relname,
-                    con.conname/*!TODO ,
-                    pos.n */
+                    con.conname,
+                    pos.n
                 ;
                 "
                 .to_string(),
